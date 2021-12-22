@@ -6,6 +6,7 @@ public class HomeWorkApp {
 //		checkSumSign();
 		printColor();
 		compareNumbers();
+		
 	}
 	private static void	PrintThreeWords() {
 		System.out.println("Orange");
