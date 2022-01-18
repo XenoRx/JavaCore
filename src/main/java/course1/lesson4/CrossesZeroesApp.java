@@ -65,7 +65,7 @@ public class CrossesZeroesApp {
 			x = SCANNER.nextInt() - 1;
 			y = SCANNER.nextInt() - 1;
 		} while (! isCellValid(x, y));
-		map[x][y] = DOT_X;
+		map[y][x] = DOT_X;
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class CrossesZeroesApp {
 		do {
 			x = RANDOM.nextInt(SIZE);
 			y = RANDOM.nextInt(SIZE);
-		} while (! isCellValid(x, y));
+		} while (!isCellValid(x, y));
 		System.out.println("Робот делает ход в " + (x + 1) + " " + (y + 1));
 		map[y][x] = DOT_0;
 	}
@@ -93,36 +93,48 @@ public class CrossesZeroesApp {
 	
 	/**
 	 * Проверка победы
+	 *
 	 * @param symbol Символ для которого проверяем. Крестик или Нолик.
 	 * @return true, если выиграл
 	 */
-	public static boolean checkWin(char symbol) {
-		//Строки
-		if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) {
-			return true;
-		}
-		if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) {
-			return true;
-		}
-		if (map[2][0] == symbol && map[2][1] == symbol && map[2][2] == symbol) {
-			return true;
-		}
-		//Столбцы
-		if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) {
-			return true;
-		}
-		if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) {
-			return true;
-		}
-		if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) {
-			return true;
-		}
-		//Диагонали
-		if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) {
-			return true;
-		}
-		if (map[0][2] == symbol && map[1][1] == symbol && map[2][0] == symbol) {
-			return true;
+//	public static boolean checkWin(char symbol) {
+//		//Строки
+//		if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) {
+//			return true;
+//		}
+//		if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) {
+//			return true;
+//		}
+//		if (map[2][0] == symbol && map[2][1] == symbol && map[2][2] == symbol) {
+//			return true;
+//		}
+//		//Столбцы
+//		if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) {
+//			return true;
+//		}
+//		if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) {
+//			return true;
+//		}
+//		if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) {
+//			return true;
+//		}
+//		//Диагонали
+//		if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) {
+//			return true;
+//		}
+//		if (map[0][2] == symbol && map[1][1] == symbol && map[2][0] == symbol) {
+//			return true;
+//		}
+//		return false;
+//	}
+	public static boolean checkWin2(char symbol) { //это было жоска
+		for (int i = 0; i < SIZE; i++) {
+			if ((map[i][0] == symbol && map[i][1] == symbol && map[i][2] == symbol || map[0][i] == symbol && map[1][i] == symbol && map[2][i] == symbol)) {
+				return true;
+			}
+			if ((map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol || map[2][0] == symbol && map[1][1] == symbol && map[0][2] == symbol)) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -149,7 +161,7 @@ public class CrossesZeroesApp {
 		while (true) {
 			humanTurn();
 			printMap();
-			if (checkWin(DOT_X)) {
+			if (checkWin2(DOT_X)) {
 				System.out.println("Побеждает человек");
 				break;
 			}
@@ -159,7 +171,7 @@ public class CrossesZeroesApp {
 			}
 			aiTurn();
 			printMap();
-			if (checkWin(DOT_0)) {
+			if (checkWin2(DOT_0)) {
 				System.out.println("Робот выиграл");
 				break;
 			}
