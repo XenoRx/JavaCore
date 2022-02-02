@@ -5,39 +5,50 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CounterApp extends JFrame {
+public class CounterAppMod extends JFrame {
 	private int value;
 	private JLabel infoLabel;
 	
-	public CounterApp() {
-		setBounds(500, 500, 300, 200);
+	public CounterAppMod() {
+		//ОКНО x,y(положение на экране) w,h(Ширина и высота окна)
+		setBounds(500, 300, 400, 200);
 		setTitle("Counter App");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		//шрифт
 		Font font = new Font("Arial", Font.BOLD, 32);
-		
-		//текстовое поле(не редактируемое)
+		//Добавляем панель
+		JPanel panel1 = new JPanel();
+		//текстовое поле счётчик(не редактируемое)
 		JLabel label = new JLabel(String.valueOf(value));
 		label.setFont(font);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		add(label, BorderLayout.CENTER);
+//		add(label, BorderLayout.CENTER);
+		panel1.add(label, BorderLayout.CENTER);
 		
 		//Добавление инфо панели
 		//Будем показывать ошибку, если значение счетчика по модулю больше 10
 		infoLabel = new JLabel();
 		add(infoLabel, BorderLayout.NORTH);
 		
-		
 		//Кнопки увеличения и уменьшения
 		JButton decrementButton = new JButton("<");
 		decrementButton.setFont(font);
-		add(decrementButton, BorderLayout.WEST);
+		JButton multiMinus = new JButton("<<");
+		multiMinus.setFont(font);
 		JButton incrementButton = new JButton(">");
 		incrementButton.setFont(font);
-		add(incrementButton, BorderLayout.EAST);
+		JButton multiPlus = new JButton(">>");
+		multiPlus.setFont(font);
 		
-//
-		
+		//Левая часть панели
+		panel1.add(multiMinus, BorderLayout.WEST);
+		panel1.add(decrementButton, BorderLayout.WEST);
+		//центральная часть панели
+		panel1.add(label, BorderLayout.CENTER);
+		//Правая часть панели
+		panel1.add(incrementButton, BorderLayout.EAST);
+		panel1.add(multiPlus, BorderLayout.EAST);
+		//логика кнопок
 		decrementButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -54,8 +65,24 @@ public class CounterApp extends JFrame {
 				validateRange();
 			}
 		});
-		
-		
+		multiMinus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				value -= 10;
+				label.setText(String.valueOf(value));
+				validateRange();
+			}
+		});
+		multiPlus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				value += 10;
+				label.setText(String.valueOf(value));
+				validateRange();
+			}
+		});
+		//вывод содержимого панели на экран
+		getContentPane().add(panel1);
 		setVisible(true);
 	}
 	
@@ -68,6 +95,6 @@ public class CounterApp extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new CounterApp();
+		new CounterAppMod();
 	}
 }
