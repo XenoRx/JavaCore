@@ -6,7 +6,7 @@ public class HomeWorkApp2 {
 		checkNum(-10);
 		System.out.println(trueOrFalse2(0));
 		countStringNum("string", 8);
-		System.out.println(leapYear(2021));
+		System.out.println(leapYear(2028));
 	}
 	
 	private static boolean trueOrFalse(int num1, int num2){
