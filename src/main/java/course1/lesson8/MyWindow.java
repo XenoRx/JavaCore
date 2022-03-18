@@ -1,7 +1,6 @@
-package lesson8;
+package course1.lesson8;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
