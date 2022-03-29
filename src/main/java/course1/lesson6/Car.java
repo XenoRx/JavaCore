@@ -1,6 +1,6 @@
 package course1.lesson6;
 
-public class Car extends Transport {
+class Car extends Transport {
 	
 	protected String model;
 	protected int year;
@@ -38,5 +38,10 @@ public class Car extends Transport {
 	@Override
 	public void wroomWroom() {
 		System.out.println("Wroom");
+	}
+	
+	@Override
+	public void printInventionDate() {
+	
 	}
 }

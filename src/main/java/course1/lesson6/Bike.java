@@ -19,4 +19,9 @@ public class Bike extends Transport{
 	public void wroomWroom() {
 		System.out.println("Brrrrrr");
 	}
+	
+	@Override
+	public void printInventionDate() {
+	
+	}
 }
